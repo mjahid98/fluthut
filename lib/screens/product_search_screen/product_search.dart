@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../searchpage.dart';
+import '../../components/search_bar.dart';
 
 class ProductSearch extends StatefulWidget {
   const ProductSearch({Key? key}) : super(key: key);
@@ -116,7 +116,7 @@ class _ProductSearchState extends State<ProductSearch>
                       ),
                       child: Stack(
                         children: [
-                          Image.asset('assets/image/blackshirt.jpg',height: 150,width: 200,fit: BoxFit.fitWidth,),
+                          Image.asset('assets/images/blackshirt.jpg',height: 150,width: 200,fit: BoxFit.fitWidth,),
                           Container(
                             margin: EdgeInsets.only(top: 240,left: 140),
                             height: 30,width: 50,
