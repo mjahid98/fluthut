@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:fluthut/components/socal_icon.dart';
 import 'package:http/http.dart' as http;
 import 'package:fluthut/size_config.dart';
-import 'package:flutter_svg/svg.dart';
+// import 'package:flutter_svg/svg.dart';
 
 
 import '../../constants.dart';

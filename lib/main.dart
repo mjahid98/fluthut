@@ -1,4 +1,6 @@
 import 'package:fluthut/constants.dart';
+import 'package:fluthut/screens/home/homescreen.dart';
+import 'package:fluthut/screens/product_search_screen/product_search.dart';
 import 'package:fluthut/screens/signin/signin.dart';
 import 'package:flutter/material.dart';
 
@@ -21,7 +23,8 @@ class Fluthut extends StatelessWidget {
           secondary: kSecondaryColor
         ),
       ),
-      home: SignInScreen(),
+      // home: SignInScreen(),
+      home: HomeScreen(),
     );
   }
 }
