@@ -23,8 +23,8 @@ class Fluthut extends StatelessWidget {
           secondary: kSecondaryColor
         ),
       ),
-      // home: SignInScreen(),
-      home: HomeScreen(),
+      home: SignInScreen(),
+      // home: HomeScreen(),
     );
   }
 }
