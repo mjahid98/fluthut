@@ -49,7 +49,7 @@ Column(children: [
         Container(
           height: 110,
           width: 150,
-          child: Image.asset('image/headphone.jpg'),
+          child: Image.asset('assets/images/product-image-1.jpg'),
         ),
         Column(children: [
           Text('WIRELESS HEADPHONE'),
@@ -63,7 +63,7 @@ Column(children: [
         Container(
           height: 110,
           width: 150,
-          child: Image.asset('image/bag.jpg'),
+          child: Image.asset('assets/images/product-image-1.jpg'),
         ),
         Column(children: [
           Text('WOMAN BAG'),
@@ -77,7 +77,7 @@ Column(children: [
         Container(
           height: 110,
           width: 150,
-          child: Image.asset('image/shoe.jpg'),
+          child: Image.asset('assets/images/product-image-1.jpg'),
         ),
         Column(children: [
           Text('SHOE FOR MAN'),
