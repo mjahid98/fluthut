@@ -1,3 +1,4 @@
+import 'package:fluthut/screens/single_product.dart';
 import 'package:fluthut/size_config.dart';
 import 'package:flutter/material.dart';
 
@@ -31,82 +32,83 @@ class _ProductsGridState extends State<ProductsGrid> {
                 borderRadius:
                 BorderRadius.all(Radius.circular(15.0))),
             elevation: 8,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Image.asset(
+            child: InkWell(
+              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (builder)=>SingleProduct())),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Image.asset(
                     'assets/images/product-image-1.jpg',
                     fit: BoxFit.cover,
                     height: percentWidth(38),
                     width: percentWidth(50),
                   ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: Column(
-                    mainAxisAlignment:
-                    MainAxisAlignment.spaceBetween,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
-                            top: 6.0, bottom: 7),
-                        child: Row(
+                  Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: Column(
+                      mainAxisAlignment:
+                      MainAxisAlignment.spaceBetween,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              top: 6.0, bottom: 7),
+                          child: Row(
+                            children: [
+                              Text(
+                                'Product Name',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Row(
+                          mainAxisAlignment:
+                          MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Product Name',
-                              style: TextStyle(
-                                fontSize: 16,
+                            Container(
+                              // margin: EdgeInsets.only(top: 240,left: 5),
+                              child: Text(
+                                '\$24.99',
+                                style: TextStyle(
+                                    color: kSecondaryColor,
+                                    fontSize: 15),
+                              ),
+                            ),
+                            Container(
+                              // margin: EdgeInsets.only(top: 240,left: 140),
+                              // height: 30,width: 50,
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 6, vertical: 2),
+                              decoration: BoxDecoration(
+                                  color: kPrimaryColor,
+                                  borderRadius: BorderRadius.all(
+                                      Radius.circular(15.0))),
+                              child: Row(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.white,
+                                    size: 18,
+                                  ),
+                                  Text(
+                                    '4.9',
+                                    style: TextStyle(
+                                        color: Colors.white),
+                                  ),
+                                ],
                               ),
                             ),
                           ],
                         ),
-                      ),
-                      Row(
-                        mainAxisAlignment:
-                        MainAxisAlignment.spaceBetween,
-                        children: [
-                          Container(
-                            // margin: EdgeInsets.only(top: 240,left: 5),
-                            child: Text(
-                              '\$24.99',
-                              style: TextStyle(
-                                  color: kSecondaryColor,
-                                  fontSize: 15),
-                            ),
-                          ),
-                          Container(
-                            // margin: EdgeInsets.only(top: 240,left: 140),
-                            // height: 30,width: 50,
-                            padding: EdgeInsets.symmetric(
-                                horizontal: 6, vertical: 2),
-                            decoration: BoxDecoration(
-                                color: kPrimaryColor,
-                                borderRadius: BorderRadius.all(
-                                    Radius.circular(15.0))),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                Icon(
-                                  Icons.star,
-                                  color: Colors.white,
-                                  size: 18,
-                                ),
-                                Text(
-                                  '4.9',
-                                  style: TextStyle(
-                                      color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                )
-              ],
+                      ],
+                    ),
+                  )
+                ],
+              ),
             ),
           );
         });

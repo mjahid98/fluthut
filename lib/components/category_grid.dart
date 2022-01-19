@@ -28,8 +28,8 @@ class _CategoryGridState extends State<CategoryGrid> {
           shadowColor: kPrimaryShadowColor,
           color: kPrimaryColor,
           shape: RoundedRectangleBorder(
-              borderRadius:
-              BorderRadius.all(Radius.circular(50.0))),
+            borderRadius: BorderRadius.all(Radius.circular(50.0)),
+          ),
           elevation: 5,
           child: Container(
             // clipBehavior: Clip.antiAlias,
