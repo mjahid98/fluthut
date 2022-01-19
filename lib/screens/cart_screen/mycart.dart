@@ -16,6 +16,9 @@ class _CartState extends State<Cart> {
           elevation: 0.1,
           backgroundColor: Colors.indigo,
           title: Center(child:Text('CART'),),
+         leading: IconButton(onPressed: (){Navigator.pop(context);},
+             icon:Icon(Icons.arrow_back),
+         color: Colors.black38),
           actions: [
             IconButton(
               icon:Icon(
@@ -34,7 +37,8 @@ class _CartState extends State<Cart> {
               ),
               ),
               Expanded(child: MaterialButton(onPressed: (){},
-              child: Text('Chack out',style: TextStyle(color: Colors.white),),
+              child: Text('Chack out',
+                style: TextStyle(color: Colors.white),),
                 color: Colors.blue,
               ))
             ],

@@ -1,3 +1,4 @@
+import 'package:fluthut/screens/cart_screen/mycart.dart';
 import 'package:flutter/material.dart';
 import 'package:fluthut/size_config.dart';
 import 'package:fluthut/components/category_grid.dart';
@@ -36,8 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.chat_bubble_outline, color: kSecondaryColor),
-              onPressed: () {},
+              icon: Icon(Icons.add_shopping_cart_outlined, color: kSecondaryColor),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(
+                    builder:(context)=> Cart(),),);
+              },
             ),
             IconButton(
               icon: Icon(Icons.notifications_none_outlined,
