@@ -1,4 +1,5 @@
 import 'package:fluthut/screens/cart_screen/mycart.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluthut/size_config.dart';
 import 'package:fluthut/components/category_grid.dart';
@@ -37,7 +38,23 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           actions: [
             IconButton(
-              icon: Icon(Icons.add_shopping_cart_outlined, color: kSecondaryColor),
+              icon: Stack(
+                alignment: AlignmentDirectional.topEnd,
+                clipBehavior: Clip.none,
+                children: [
+                  Icon(Icons.shopping_cart_outlined, color: kSecondaryColor),
+                  Positioned(
+                    top: -8,
+                    right: -5,
+                    child: Container(
+
+                      padding: EdgeInsets.symmetric(vertical: 1, horizontal: 5),
+                      decoration: BoxDecoration(color: kPrimaryColor, borderRadius:  BorderRadius.circular(50.0)),
+                      child: Text('0'),
+                    ),
+                  )
+                ],
+              ),
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(
                     builder:(context)=> Cart(),),);
