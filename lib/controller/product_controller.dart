@@ -9,11 +9,11 @@ class ProductsController extends GetxController{
   var productList = List<ProductsModel>.empty().obs;
   var isLoadingProducts = true.obs;
 
-  void fetchProductsData()async{
+  void fetchProductsData(pageNo)async{
     print("calling caat");
     try{
       isLoadingProducts(true);
-      var productsData = await RemoteService.getProducts();
+      var productsData = await RemoteService.getProducts(pageNo);
 
       if(productsData!=null){
         productList.value=productsData;

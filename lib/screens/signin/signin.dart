@@ -41,11 +41,12 @@ class _SignInScreenState extends State<SignInScreen> {
       'Content-Type': 'application/json',
     });
 
-    print(response.statusCode);
+
+      print(response.statusCode);
     print(response.body);
     var jsonString = jsonDecode(response.body);
     msg = jsonString['message'];
-    // print(jsonString['success']);
+    print(jsonString);
     if(jsonString['success']==true){
       Navigator.pop(context);
       Navigator.push(context, MaterialPageRoute(builder: (builder)=>HomeScreen()));

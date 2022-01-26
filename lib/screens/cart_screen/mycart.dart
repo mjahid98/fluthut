@@ -1,4 +1,5 @@
 import 'package:fluthut/components/search_bar.dart';
+import 'package:fluthut/screens/checkout/checkout.dart';
 import 'package:flutter/material.dart';
 
 import '../../constants.dart';
@@ -168,7 +169,10 @@ class _CartState extends State<Cart> {
               ),
               Expanded(
                   child: MaterialButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(
+                    builder:(context)=> Checkout(),),);
+                },
                 child: Text(
                   'Chack out',
                   style: TextStyle(color: Colors.white),

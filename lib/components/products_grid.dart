@@ -14,33 +14,26 @@ class ProductsGrid extends StatefulWidget {
 }
 
 class _ProductsGridState extends State<ProductsGrid> {
-
   final ProductsController _controller = Get.put(ProductsController());
-
 
   @override
   void initState() {
-    _controller.fetchProductsData();
+    _controller.fetchProductsData(1);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-
-
-    return  Obx((){
-
-      if(_controller.isLoadingProducts.value){
+    return Obx(() {
+      if (_controller.isLoadingProducts.value) {
         return Container(
             height: percentHeight(60),
             child: Center(child: CircularProgressIndicator()));
-      }
-      else{
+      } else {
         return GridView.builder(
-
             shrinkWrap: true,
             physics: NeverScrollableScrollPhysics(),
-            padding: EdgeInsets.all( 10 ),
+            padding: EdgeInsets.all(10),
             gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 200,
                 childAspectRatio: 3 / 4,
@@ -55,34 +48,61 @@ class _ProductsGridState extends State<ProductsGrid> {
                   clipBehavior: Clip.antiAlias,
                   shadowColor: kPrimaryShadowColor,
                   shape: RoundedRectangleBorder(
-                      borderRadius:
-                      BorderRadius.all(Radius.circular(15.0))),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(15.0),
+                    ),
+                  ),
                   elevation: 8,
                   child: InkWell(
-                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (builder)=>SingleProduct(
-                        _controller.productList[index]))),
+                    onTap: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (builder) =>
+                                SingleProduct(_controller.productList[index]))),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.network(
-                          '${_controller.productList[index].images[0].src}',
-                          fit: BoxFit.cover,
-                          height: percentWidth(38),
-                          width: percentWidth(50),
+                        Stack(
+                          children: [
+                            Image.network(
+                              '${_controller.productList[index].images[0].src}',
+                              fit: BoxFit.cover,
+                              height: percentWidth(38),
+                              width: percentWidth(50),
+                            ),
+                            Positioned(
+                                right: 3,
+                                top: 3,height: 42,
+                                width: 42,
+                                child: Container(
+
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    borderRadius: BorderRadius.all(
+                                      Radius.circular(50.0),
+                                    ),
+                                  ),
+                                  child: IconButton(
+                                    onPressed: () {},
+                                    icon: Icon(
+                                      Icons.add_shopping_cart,
+                                      color: kSecondaryColor,
+                                    ),
+                                  ),
+                                ))
+                          ],
                         ),
                         Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisAlignment:
-                            MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Padding(
-                                padding: const EdgeInsets.only(
-                                    top: 6.0, bottom: 7),
+                                padding:
+                                    const EdgeInsets.only(top: 6.0, bottom: 7),
                                 child: Text(
-
                                   '${_controller.productList[index].name}',
                                   overflow: TextOverflow.ellipsis,
                                   maxLines: 1,
@@ -93,15 +113,14 @@ class _ProductsGridState extends State<ProductsGrid> {
                               ),
                               Row(
                                 mainAxisAlignment:
-                                MainAxisAlignment.spaceBetween,
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   Container(
                                     // margin: EdgeInsets.only(top: 240,left: 5),
                                     child: Text(
                                       '\$${_controller.productList[index].price}',
                                       style: TextStyle(
-                                          color: kSecondaryColor,
-                                          fontSize: 15),
+                                          color: kSecondaryColor, fontSize: 15),
                                     ),
                                   ),
                                   Container(
@@ -110,7 +129,11 @@ class _ProductsGridState extends State<ProductsGrid> {
                                     padding: EdgeInsets.symmetric(
                                         horizontal: 6, vertical: 2),
                                     decoration: BoxDecoration(
-                                        color: _controller.productList[index].ratingCount == 0 ? kSecondaryColor :kPrimaryColor,
+                                        color: _controller.productList[index]
+                                                    .ratingCount ==
+                                                0
+                                            ? kSecondaryColor
+                                            : kPrimaryColor,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(15.0))),
                                     child: Row(
@@ -123,8 +146,7 @@ class _ProductsGridState extends State<ProductsGrid> {
                                         ),
                                         Text(
                                           '${_controller.productList[index].ratingCount == 0 ? 0.0 : _controller.productList[index].ratingCount}',
-                                          style: TextStyle(
-                                              color: Colors.white),
+                                          style: TextStyle(color: Colors.white),
                                         ),
                                       ],
                                     ),

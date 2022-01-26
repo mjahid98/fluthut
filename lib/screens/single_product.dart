@@ -1,20 +1,27 @@
-
 import 'package:flutter/material.dart';
 import 'package:fluthut/models/all_products_model/all_products_model.dart';
 import '../constants.dart';
 import '../size_config.dart';
 
-class SingleProduct extends StatelessWidget {
+class SingleProduct extends StatefulWidget {
   ProductsModel product;
   SingleProduct(this.product);
+
+  @override
+  State<SingleProduct> createState() => _SingleProductState();
+}
+
+class _SingleProductState extends State<SingleProduct> {
+  int imgIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+          child: SingleChildScrollView(
+            child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
             Stack(
               children: [
                 Stack(
@@ -22,8 +29,9 @@ class SingleProduct extends StatelessWidget {
                   children: [
                     GestureDetector(
                       // onScaleStart: ,
+
                       child: Image.network(
-                        product.images[0].src,
+                        widget.product.images[imgIndex].src,
                         fit: BoxFit.fitHeight,
                         height: percentWidth(115),
                         width: percentWidth(100),
@@ -39,40 +47,47 @@ class SingleProduct extends StatelessWidget {
                             left: percentWidth(10),
                           ),
                           scrollDirection: Axis.horizontal,
-                          itemCount: product.images.length,
+                          itemCount: widget.product.images.length,
                           itemBuilder: (BuildContext context, int index) {
                             return Row(children: [
-                              Container(
-                                height: percentWidth(20),
-                                width: percentWidth(20),
-                                // clipBehavior: Clip.antiAlias,
-                                decoration: BoxDecoration(
-                                  border:
-                                  Border.all(color: kPrimaryColor.withOpacity(.6), width: 1.5),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                      product.images[index].src,
+                              InkWell(
+                                onTap: () {
+                                  imgIndex = index;
+                                  setState(() {});
+                                },
+                                child: Container(
+                                  height: percentWidth(20),
+                                  width: percentWidth(20),
+                                  // clipBehavior: Clip.antiAlias,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: imgIndex == index ? kPrimaryColor.withOpacity(.6) : kSecondaryColor,
+                                        width: 1.5),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                        widget.product.images[index].src,
+                                      ),
+                                      fit: BoxFit.cover,
                                     ),
-                                    fit: BoxFit.cover,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: kPrimaryColor.withOpacity(0.3),
+                                        spreadRadius: 0,
+                                        blurRadius: 4,
+                                        offset: Offset(
+                                            2, 2), // changes position of shadow
+                                      ),
+                                    ],
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(10.0)),
                                   ),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: kPrimaryColor.withOpacity(0.3),
-                                      spreadRadius: 0,
-                                      blurRadius: 4,
-                                      offset: Offset(
-                                          2, 2), // changes position of shadow
-                                    ),
-                                  ],
-                                  borderRadius:
-                                  BorderRadius.all(Radius.circular(10.0)),
+                                  // child: Image.asset(
+                                  //   'assets/images/product-image-1.jpg',
+                                  //   fit: BoxFit.cover,
+                                  //   height: percentWidth(20),
+                                  //   width: percentWidth(20),
+                                  // ),
                                 ),
-                                // child: Image.asset(
-                                //   'assets/images/product-image-1.jpg',
-                                //   fit: BoxFit.cover,
-                                //   height: percentWidth(20),
-                                //   width: percentWidth(20),
-                                // ),
                               ),
                               SizedBox(
                                 width: percentWidth(5),
@@ -116,13 +131,36 @@ class SingleProduct extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 18),
-              child: Text(product.name, style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 21, fontWeight: FontWeight.w500),),
+              child: Text(
+                widget.product.name,
+                style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 21,
+                    fontWeight: FontWeight.w500),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 18),
+              child: Text(
+                widget.product.description,
+                style: TextStyle(
+                    color: Colors.black87,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w400),
+              ),
             )
-          ],
-        )
-        
+        ],
+      ),
+          )),
+      bottomNavigationBar: MaterialButton(
+        onPressed: () {},
+        shape: BeveledRectangleBorder(),
+        child: Text(
+          'Add To Cart',
+          style: TextStyle(color: Colors.white, fontSize: 18),
+        ),
+        padding: EdgeInsets.symmetric(vertical: 16),
+        color: kPrimaryColor,
       ),
     );
   }
