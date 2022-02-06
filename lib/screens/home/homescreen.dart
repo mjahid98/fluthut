@@ -1,4 +1,5 @@
 import 'package:fluthut/screens/cart_screen/mycart.dart';
+import 'package:fluthut/screens/product_search_screen/product_search.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluthut/size_config.dart';
@@ -20,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
     SizeConfig().init(context);
 
     return Scaffold(
-      backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         appBar: AppBar(
           shadowColor: Colors.transparent,
           backgroundColor: Colors.white,
@@ -47,32 +48,40 @@ class _HomeScreenState extends State<HomeScreen> {
                     top: -8,
                     right: -5,
                     child: Container(
-
                       padding: EdgeInsets.symmetric(vertical: 1, horizontal: 5),
-                      decoration: BoxDecoration(color: kPrimaryColor, borderRadius:  BorderRadius.circular(50.0)),
+                      decoration: BoxDecoration(
+                          color: kPrimaryColor,
+                          borderRadius: BorderRadius.circular(50.0)),
                       child: Text('0'),
                     ),
                   )
                 ],
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                    builder:(context)=> Cart(),),);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Cart(),
+                  ),
+                );
               },
             ),
             IconButton(
-              icon: Icon(Icons.notifications_none_outlined,
-                  color: kSecondaryColor),
-              onPressed: () {},
+              icon: Icon(Icons.search_outlined, color: kSecondaryColor),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProductSearchScreen(),
+                  ),
+                );
+              },
             ),
           ],
         ),
         body: SingleChildScrollView(
           child: Column(
-            children: [
-              CategoryGrid(),
-              ProductsGrid()
-            ],
+            children: [CategoryGrid(), ProductsGrid()],
           ),
         ));
   }

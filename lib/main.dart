@@ -3,8 +3,10 @@ import 'package:fluthut/screens/home/homescreen.dart';
 import 'package:fluthut/screens/product_search_screen/product_search.dart';
 import 'package:fluthut/screens/signin/signin.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const Fluthut());
 }
 
@@ -24,6 +26,7 @@ class Fluthut extends StatelessWidget {
         ),
       ),
       home: SignInScreen(),
+      // home: ProductSearchScreen(),
       // home: HomeScreen(),
     );
   }

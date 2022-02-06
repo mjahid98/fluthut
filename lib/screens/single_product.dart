@@ -19,9 +19,9 @@ class _SingleProductState extends State<SingleProduct> {
     return Scaffold(
       body: SafeArea(
           child: SingleChildScrollView(
-            child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
             Stack(
               children: [
                 Stack(
@@ -30,11 +30,14 @@ class _SingleProductState extends State<SingleProduct> {
                     GestureDetector(
                       // onScaleStart: ,
 
-                      child: Image.network(
-                        widget.product.images[imgIndex].src,
-                        fit: BoxFit.fitHeight,
-                        height: percentWidth(115),
-                        width: percentWidth(100),
+                      child: Hero(
+                        tag: widget.product,
+                        child: Image.network(
+                          widget.product.images[imgIndex].src,
+                          fit: BoxFit.fitHeight,
+                          height: percentWidth(115),
+                          width: percentWidth(100),
+                        ),
                       ),
                     ),
                     Container(
@@ -61,7 +64,9 @@ class _SingleProductState extends State<SingleProduct> {
                                   // clipBehavior: Clip.antiAlias,
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                        color: imgIndex == index ? kPrimaryColor.withOpacity(.6) : kSecondaryColor,
+                                        color: imgIndex == index
+                                            ? kPrimaryColor.withOpacity(.6)
+                                            : kSecondaryColor,
                                         width: 1.5),
                                     image: DecorationImage(
                                       image: NetworkImage(
@@ -107,7 +112,9 @@ class _SingleProductState extends State<SingleProduct> {
                         Icons.arrow_back,
                         color: kPrimaryColor,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
                     ),
                     // title: Image.asset(
                     //   'assets/logos/fluthut-logo-website-retina.png',
@@ -130,7 +137,8 @@ class _SingleProductState extends State<SingleProduct> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 18),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 22.0, vertical: 18),
               child: Text(
                 widget.product.name,
                 style: TextStyle(
@@ -140,7 +148,8 @@ class _SingleProductState extends State<SingleProduct> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 22.0, vertical: 18),
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 22.0, vertical: 18),
               child: Text(
                 widget.product.description,
                 style: TextStyle(
@@ -149,9 +158,9 @@ class _SingleProductState extends State<SingleProduct> {
                     fontWeight: FontWeight.w400),
               ),
             )
-        ],
-      ),
-          )),
+          ],
+        ),
+      )),
       bottomNavigationBar: MaterialButton(
         onPressed: () {},
         shape: BeveledRectangleBorder(),

@@ -65,18 +65,21 @@ class _ProductsGridState extends State<ProductsGrid> {
                       children: [
                         Stack(
                           children: [
-                            Image.network(
-                              '${_controller.productList[index].images[0].src}',
-                              fit: BoxFit.cover,
-                              height: percentWidth(38),
-                              width: percentWidth(50),
+                            Hero(
+                              tag: _controller.productList[index],
+                              child: Image.network(
+                                '${_controller.productList[index].images[0].src}',
+                                fit: BoxFit.cover,
+                                height: percentWidth(38),
+                                width: percentWidth(50),
+                              ),
                             ),
                             Positioned(
                                 right: 3,
-                                top: 3,height: 42,
+                                top: 3,
+                                height: 42,
                                 width: 42,
                                 child: Container(
-
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.all(

@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:get_storage/get_storage.dart';
 import 'package:fluthut/screens/home/homescreen.dart';
 import 'package:fluthut/screens/signup/signup.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +25,10 @@ class _SignInScreenState extends State<SignInScreen> {
   String msg = '';
 
   loginReq() async {
+
+    box.write('name', ctUsername.text);
+    box.write('pass', ctPassword.text);
+
     // String url = 'https://happybuy.appsticit.com/user_login';
     String url = 'https://fluthut.oxience.com/wp-json/jwt-auth/v1/token';
     Uri uri = Uri.parse(url);
@@ -57,6 +61,15 @@ class _SignInScreenState extends State<SignInScreen> {
     // }
 
     setState(() {});
+  }
+  final box = GetStorage();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+ box.read('name') == null ? ctUsername.text = '':ctUsername.text = box.read('name');
+    box.read('pass') == null ? ctPassword.text = '':ctPassword.text = box.read('pass');
+
   }
 
 
